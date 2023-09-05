@@ -29,7 +29,7 @@ def render_background(args)
 end
 
 def render_cells(args, live_cells)
-  args.outputs.solids << live_cells.map { |cell| [cell[0] * SIZE, cell[1] * SIZE, SIZE, SIZE] }
+  args.outputs.solids << live_cells.map { |x, y| [x * SIZE, y * SIZE, SIZE, SIZE] }
 end
 
 def render_framerate(args)
