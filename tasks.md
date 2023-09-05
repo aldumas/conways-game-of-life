@@ -1,0 +1,10 @@
+- [ ] Add the ability to pause, play, and restart the simulation.
+- [ ] Add a UI pane.
+- [ ] Add ability to set the board to a random state, including button.
+- [ ] Add ability to specify a random seed.
+- [ ] Add a slider to control simulation speed (generations per second).
+- [ ] Generate sound based on coordinates of cells being born.
+- [ ] Add ability to enable/disable sounds, including button.
+- [ ] Add ability to drag and drop special forms into the screen.
+- [ ] Replace solid squares with circle sprites.
+- [ ] Deploy to web.
