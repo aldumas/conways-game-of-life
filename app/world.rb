@@ -6,9 +6,9 @@ require_relative 'cell'
 class World
   include Serializable
 
-  def initialize(width:, height:)
+  def initialize(width:, height:, init: [])
     @width, @height = width, height
-    @living = {}
+    update(init)
   end
 
   def live_cells

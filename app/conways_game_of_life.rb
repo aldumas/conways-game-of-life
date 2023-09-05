@@ -6,9 +6,8 @@ require_relative 'world'
 class ConwaysGameOfLife
   include Serializable
 
-  def initialize(world:, init_live_cells: [])
+  def initialize(world:)
     @world = world
-    @world.update(init_live_cells)
   end
 
   def generate
