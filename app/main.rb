@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'game'
+require_relative 'conways_game_of_life'
 
 SIZE = 10
 GENERATIONS_PER_SECOND = 10
@@ -10,7 +10,7 @@ GLIDER = [[20, 65], [20, 64], [20, 63], [19, 63], [18, 64]]
 
 def tick(args)
   world = args.state.world ||= World.new(width: world_width, height: world_height)
-  game = args.state.game ||= Game.new(world: world, init_live_cells: GLIDER)
+  game = args.state.game ||= ConwaysGameOfLife.new(world: world, init_live_cells: GLIDER)
 
   game.generate unless wait(args)
 

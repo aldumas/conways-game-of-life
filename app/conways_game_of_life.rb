@@ -3,7 +3,7 @@
 require_relative 'serializable'
 require_relative 'world'
 
-class Game
+class ConwaysGameOfLife
   include Serializable
 
   def initialize(world:, init_live_cells: [])
