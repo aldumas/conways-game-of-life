@@ -12,7 +12,7 @@ def tick(args)
   world = args.state.world ||= World.new(width: world_width, height: world_height, init: GLIDER)
   game = args.state.game ||= ConwaysGameOfLife.new(world: world)
 
-  game.generate unless wait(args)
+  game.generate(1) unless wait(args)
 
   render_background args
   render_cells args, world.live_cells.map(&:coords)
