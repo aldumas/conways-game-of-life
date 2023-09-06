@@ -22,7 +22,7 @@ class ConwaysGameOfLife
   end
 
   def serialize
-    {world: world.serialize}
+    {world: world}
   end
 
   private

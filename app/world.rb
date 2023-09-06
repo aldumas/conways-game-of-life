@@ -33,7 +33,7 @@ class World
   end
 
   def serialize
-    {width: width, height: height, living: living.serialize}
+    {width: width, height: height, living: living}
   end
 
   private

@@ -49,7 +49,7 @@ class DragonRubyGame
   end
 
   def serialize
-    {game: game, world: world, flash: flash.map(&:serialize)}
+    {game: game, world: world, flash: flash}
   end
 
   private
