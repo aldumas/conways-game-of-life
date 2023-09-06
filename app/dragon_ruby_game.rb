@@ -3,6 +3,7 @@
 require_relative 'serializable'
 require_relative 'conways_game_of_life'
 require_relative 'world'
+require_relative 'flash'
 
 class DragonRubyGame
   include Serializable
@@ -18,6 +19,7 @@ class DragonRubyGame
     @world = World.new(width: dimension(pixels_x), height: dimension(pixels_y), init: GLIDER)
     @game = ConwaysGameOfLife.new(world: @world)
     @paused = false
+    @flash = []
   end
 
   def dimension(pixels)
@@ -40,21 +42,28 @@ class DragonRubyGame
 
   def render
     render_background
+    render_flash
     render_cells
 
     render_framerate
   end
 
   def serialize
-    {game: game, world: world}
+    {game: game, world: world, flash: flash.map(&:serialize)}
   end
 
   private
 
-  attr_reader :game, :world, :paused
+  attr_reader :game, :world, :paused, :flash
 
   def toggle_paused
     @paused = !@paused
+
+    queue_flash(@paused ? "Game is paused." : "Continuing...")
+  end
+
+  def queue_flash(message)
+    flash << Flash.new(message, left_x: args.grid.right, bottom_y: args.grid.top - 30)
   end
 
   def wait?
@@ -63,6 +72,12 @@ class DragonRubyGame
 
   def render_background
     outputs.solids << [0, 0, 1280, 720, 255, 255, 255]
+  end
+
+  def render_flash
+    flash.shift if flash.first&.done?
+
+    flash.first&.render(args)
   end
 
   def render_cells
