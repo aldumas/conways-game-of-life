@@ -17,6 +17,7 @@ class DragonRubyGame
   def initialize(pixels_x, pixels_y)
     @world = World.new(width: dimension(pixels_x), height: dimension(pixels_y), init: GLIDER)
     @game = ConwaysGameOfLife.new(world: @world)
+    @paused = false
   end
 
   def dimension(pixels)
@@ -24,7 +25,17 @@ class DragonRubyGame
   end
 
   def update
-    game.generate(1) unless wait
+    if keyboard.key_up.p
+      toggle_paused
+    end
+
+    unless paused?
+      game.generate(1) unless wait?
+    end
+  end
+
+  def paused?
+    paused
   end
 
   def render
@@ -40,9 +51,13 @@ class DragonRubyGame
 
   private
 
-  attr_reader :game, :world
+  attr_reader :game, :world, :paused
 
-  def wait
+  def toggle_paused
+    @paused = !@paused
+  end
+
+  def wait?
     state.tick_count % TICKS_PER_GENERATION != 0
   end
 
