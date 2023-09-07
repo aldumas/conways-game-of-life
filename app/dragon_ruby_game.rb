@@ -71,7 +71,7 @@ class DragonRubyGame
   end
 
   def render_background
-    outputs.solids << [0, 0, 1280, 720, 255, 255, 255]
+    outputs.background_color = [255, 255, 255]
   end
 
   def render_flash
